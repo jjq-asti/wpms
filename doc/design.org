@@ -1,0 +1,55 @@
+#+title: WMPS
+
+
+#+begin_src plantuml :file system.png
+  skinparam monochrome true
+  left to right direction
+  skinparam dpi 300
+
+  rectangle Client
+  rectangle RaspberryPi
+
+  rectangle "Remote Server"{
+    rectangle Server{
+            component webserver
+            component socketserver
+            webserver -r- socketserver
+            }
+      database DB
+      Server -- DB
+          }
+
+  cloud internet1
+  cloud internet2
+  rectangle "Ookla test server" as ookserver
+  rectangle "Iperf3 test server" as iperf3server
+  Client -- internet1
+  internet1 -- webserver
+  RaspberryPi -- internet2
+  internet2 -- ookserver
+  internet2 -- iperf3server
+  internet2 -- socketserver
+#+end_src
+
+#+RESULTS:
+[[file:system.png]]
+
+
+#+begin_src plantuml :file use_case.png
+  skinparam monochrome true
+  skinparam dpi 300
+  skinparam actorStyle awesome
+
+  left to right direction
+
+  "User" as user
+
+  user --> (Ookla Speedtest)
+  user --> (Throughput Test)
+  user --> (RTT Test)
+  user --> (Latency Test)
+
+#+end_src
+
+#+RESULTS:
+[[file:use_case.png]]

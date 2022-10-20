@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Monitoring and Performance System</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+
+  <canvas id="chart" height="200"></canvas>
+  <div class="container">
+    <div class="row align-items-start">
+      <div class="card" style="width: 303rem;">
+        <h3 class="card-title">Speedtest</h3>
+        <div>
+          <h2>Latency<span id="latency" style="padding-left: 10px;">0</span></h2>
+        </div>
+        <div>
+          <h2>Download Speed<span id="dl_speed" style="padding-left: 10px;color: aqua;">0</span></h2>
+        </div>
+        <div>
+          <h2>Upload Speed<span id="ul_speed" style="padding-left: 10px;color: aqua;">0</span></h2>
+        </div>
+        <form id="emit" method="POST" action="#">
+          <input type="submit" class="btn btn-primary" value="RUN SPEED TEST">
+        </form>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <form id="ping" method="POST" action="#">
+            <input type="text" name="pingaddr" id="pingaddr">
+            <input type="submit" value="Ping">
+          </form>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <div> <h2 id="transport">(connecting)</h2></div>
+
+  <h2>Receive:</h2>
+  <div><p id="log"></p></div>
+  <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> -->
+  <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/smoothie/1.27.0/smoothie.js"></script> -->
+  <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.3/socket.io.min.js"></script> -->
+  <!-- <script src="/static/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+  <script src="/static/jquery.min.js"></script>
+  <script src="/static/socketio/socket.io.min.js"></script>
+  <script src="/static/smoothie.js"></script>
+  <script src="/static/main.js"></script>
+</body>
+</html>
+
+
