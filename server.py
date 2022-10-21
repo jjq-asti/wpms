@@ -107,9 +107,9 @@ if __name__ == "__main__":
     app = tornado.web.Application([
         (r'/', MainHandler),
         (r'/socket.io/', socketio.get_tornado_handler(sio)),
-        (r'/api/sensor/([^/]+)?', SensorHandler),
-        (r'/api/data/([^/]+)?', DataHandler),
-        (r'/api/tcpmon/([^/]+)?', TcpMonHandler)
+        #(r'/api/sensor/([^/]+)?', SensorHandler),
+        #(r'/api/data/([^/]+)?', DataHandler),
+        #(r'/api/tcpmon/([^/]+)?', TcpMonHandler)
         ],
         template_path=os.path.join(os.path.dirname(__file__), "templates"),
         static_path=os.path.join(os.path.dirname(__file__), "static"),
