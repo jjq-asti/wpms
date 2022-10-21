@@ -15,13 +15,14 @@ $(document).ready(function() {
       var socket = io.connect('http://localhost:5000', namespaces=['/dashboard']);
       var chart = $('#chart').get(0);
 
-      socket.on('connect', function() {
+      socket.on('connect', function(msg) {
           console.log('Connected');
           if(chart.getContext){
               render();
               window.onresize = render;
           }
-          $('#transport').text('(Connected)');
+          socket.emit('join_dashboard', msg='hello')
+          $('#transport').text('(Latency)');
       });
       socket.on('ping_from_server', function(msg) {
 
@@ -29,23 +30,14 @@ $(document).ready(function() {
       });
 
       socket.on('my_response', function(msg) {
-          $('#log').append('<br>Received: ' + msg.data)
-          socket.emit('join_dashboard')
+        date = new Date().toLocaleString()
+        $('#log').append(`<br>${date} => ${msg.data}`)
       });
 
       socket.on('disconnect', function() {
           $('#transport').text('(disconnected)');
       });
 
-      socket.on('dl_result', function(msg) {
-          $('#dl_speed').text(formatBytes(msg.data));
-      });
-      socket.on('ul_result', function(msg) {
-          $('#ul_speed').text(formatBytes(msg.data));
-      });
-      socket.on('speedtest_error', function(){
-          alert('An error occured, Please try again.')
-      })
       socket.on('client_latency', function(msg){
         if (time)
             time.append(+new Date, msg.data);
